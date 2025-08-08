@@ -1,0 +1,1 @@
+Stage all modified and new files in this repository (git add -A), create a commit with a descriptive message summarizing what changed, then push directly to the main branch on GitHub. No need to check conventions or history - just describe what you see changed and push it to main.
