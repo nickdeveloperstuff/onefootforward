@@ -181,4 +181,368 @@ defmodule SuperdupernovaWeb.Widgets.Layout do
     </div>
     """
   end
+
+  @doc """
+  Menu widget for navigation lists
+  """
+  attr :orientation, :string, default: "vertical", values: ["vertical", "horizontal"]
+  attr :size, :string, default: "md", values: ["xs", "sm", "md", "lg"]
+  attr :rounded, :boolean, default: false
+  slot :items, required: true
+
+  def menu(assigns) do
+    ~H"""
+    <ul class={menu_class(@orientation, @size, @rounded)}>
+      <%= for item <- @items do %>
+        <%= render_slot(item) %>
+      <% end %>
+    </ul>
+    """
+  end
+
+  @doc """
+  Menu item component
+  """
+  attr :active, :boolean, default: false
+  attr :disabled, :boolean, default: false
+  attr :href, :string, default: nil
+  attr :navigate, :string, default: nil
+  slot :inner_block, required: true
+  slot :submenu
+
+  def menu_item(assigns) do
+    ~H"""
+    <li class={menu_item_class(@disabled)}>
+      <%= if @href do %>
+        <a href={@href} class={menu_link_class(@active)}>
+          <%= render_slot(@inner_block) %>
+        </a>
+      <% else %>
+        <%= if @navigate do %>
+          <.link navigate={@navigate} class={menu_link_class(@active)}>
+            <%= render_slot(@inner_block) %>
+          </.link>
+        <% else %>
+          <a class={menu_link_class(@active)}>
+            <%= render_slot(@inner_block) %>
+          </a>
+        <% end %>
+      <% end %>
+      <%= if @submenu != [] do %>
+        <ul>
+          <%= render_slot(@submenu) %>
+        </ul>
+      <% end %>
+    </li>
+    """
+  end
+
+  defp menu_class(orientation, size, rounded) do
+    base = "menu"
+    orientation_class = if orientation == "horizontal", do: "menu-horizontal", else: "menu-vertical"
+    size_class = "menu-#{size}"
+    rounded_class = if rounded, do: "rounded-box", else: ""
+    
+    [base, orientation_class, size_class, rounded_class]
+    |> Enum.filter(&(&1 != ""))
+    |> Enum.join(" ")
+  end
+
+  defp menu_item_class(disabled) do
+    if disabled, do: "disabled", else: ""
+  end
+
+  defp menu_link_class(active) do
+    if active, do: "active", else: ""
+  end
+
+  @doc """
+  Navbar widget for top navigation bar
+  """
+  attr :class, :string, default: ""
+  slot :start
+  slot :center
+  slot :end_slot
+
+  def navbar(assigns) do
+    ~H"""
+    <div class={"navbar bg-base-100 #{@class}"}>
+      <%= if @start != [] do %>
+        <div class="navbar-start">
+          <%= render_slot(@start) %>
+        </div>
+      <% end %>
+      
+      <%= if @center != [] do %>
+        <div class="navbar-center">
+          <%= render_slot(@center) %>
+        </div>
+      <% end %>
+      
+      <%= if @end_slot != [] do %>
+        <div class="navbar-end">
+          <%= render_slot(@end_slot) %>
+        </div>
+      <% end %>
+    </div>
+    """
+  end
+
+  @doc """
+  Navbar dropdown menu for mobile
+  """
+  attr :id, :string, required: true
+  slot :trigger, required: true
+  slot :items, required: true
+
+  def navbar_dropdown(assigns) do
+    ~H"""
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost lg:hidden">
+        <%= render_slot(@trigger) %>
+      </label>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <%= for item <- @items do %>
+          <%= render_slot(item) %>
+        <% end %>
+      </ul>
+    </div>
+    """
+  end
+
+  @doc """
+  Responsive navigation with mobile menu
+  """
+  attr :brand, :string, required: true
+  attr :brand_href, :string, default: "/"
+  slot :desktop_items, required: true
+  slot :mobile_items, required: true
+  slot :actions
+
+  def responsive_nav(assigns) do
+    ~H"""
+    <.navbar class="shadow-md">
+      <:start>
+        <!-- Mobile menu button -->
+        <.navbar_dropdown id="mobile-menu">
+          <:trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </:trigger>
+          <:items>
+            <%= render_slot(@mobile_items) %>
+          </:items>
+        </.navbar_dropdown>
+        
+        <!-- Brand -->
+        <a href={@brand_href} class="btn btn-ghost normal-case text-xl">
+          <%= @brand %>
+        </a>
+      </:start>
+      
+      <:center>
+        <!-- Desktop menu -->
+        <div class="hidden lg:flex">
+          <.menu orientation="horizontal" size="md">
+            <:items>
+              <%= render_slot(@desktop_items) %>
+            </:items>
+          </.menu>
+        </div>
+      </:center>
+      
+      <:end_slot>
+        <%= if @actions != [] do %>
+          <%= render_slot(@actions) %>
+        <% end %>
+      </:end_slot>
+    </.navbar>
+    """
+  end
+
+  @doc """
+  Breadcrumbs widget for showing navigation path
+  """
+  attr :items, :list, required: true
+  attr :separator, :string, default: "/"
+
+  def breadcrumbs(assigns) do
+    ~H"""
+    <div class="text-sm breadcrumbs">
+      <ul>
+        <%= for {item, index} <- Enum.with_index(@items) do %>
+          <li>
+            <%= if item[:href] do %>
+              <a href={item[:href]}><%= item[:label] %></a>
+            <% else %>
+              <%= if item[:navigate] do %>
+                <.link navigate={item[:navigate]}><%= item[:label] %></.link>
+              <% else %>
+                <span><%= item[:label] %></span>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    """
+  end
+
+  @doc """
+  Breadcrumbs with icons
+  """
+  attr :items, :list, required: true
+  slot :home_icon
+
+  def breadcrumbs_with_icons(assigns) do
+    ~H"""
+    <div class="text-sm breadcrumbs">
+      <ul>
+        <%= if @home_icon != [] do %>
+          <li>
+            <a href="/">
+              <%= render_slot(@home_icon) %>
+            </a>
+          </li>
+        <% end %>
+        <%= for item <- @items do %>
+          <li>
+            <%= if item[:icon] do %>
+              <span class="inline-flex gap-2 items-center">
+                <%= Phoenix.HTML.raw(item[:icon]) %>
+                <%= if item[:href] do %>
+                  <a href={item[:href]}><%= item[:label] %></a>
+                <% else %>
+                  <span><%= item[:label] %></span>
+                <% end %>
+              </span>
+            <% else %>
+              <%= if item[:href] do %>
+                <a href={item[:href]}><%= item[:label] %></a>
+              <% else %>
+                <span><%= item[:label] %></span>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    """
+  end
+
+  @doc """
+  Generate breadcrumbs from path
+  """
+  def breadcrumbs_from_path(path) do
+    segments = 
+      path
+      |> String.split("/")
+      |> Enum.reject(&(&1 == ""))
+    
+    Enum.map_reduce(segments, "", fn segment, acc ->
+      current_path = "#{acc}/#{segment}"
+      item = %{
+        label: humanize_segment(segment),
+        navigate: current_path
+      }
+      {item, current_path}
+    end)
+    |> elem(0)
+  end
+
+  defp humanize_segment(segment) do
+    segment
+    |> String.replace("-", " ")
+    |> String.replace("_", " ")
+    |> String.split(" ")
+    |> Enum.map(&String.capitalize/1)
+    |> Enum.join(" ")
+  end
+
+  @doc """
+  Styled link component
+  """
+  attr :href, :string, default: nil
+  attr :navigate, :string, default: nil
+  attr :variant, :string, default: "primary", values: ["primary", "secondary", "accent", "ghost", "link", "info", "success", "warning", "error"]
+  attr :underline, :string, default: "hover", values: ["always", "hover", "none"]
+  attr :class, :string, default: ""
+  slot :inner_block, required: true
+
+  def styled_link(assigns) do
+    ~H"""
+    <%= if @href do %>
+      <a href={@href} class={link_class(@variant, @underline, @class)}>
+        <%= render_slot(@inner_block) %>
+      </a>
+    <% else %>
+      <%= if @navigate do %>
+        <.link navigate={@navigate} class={link_class(@variant, @underline, @class)}>
+          <%= render_slot(@inner_block) %>
+        </.link>
+      <% else %>
+        <span class={link_class(@variant, @underline, @class)}>
+          <%= render_slot(@inner_block) %>
+        </span>
+      <% end %>
+    <% end %>
+    """
+  end
+
+  defp link_class(variant, underline, custom_class) do
+    base = "link"
+    variant_class = "link-#{variant}"
+    underline_class = case underline do
+      "always" -> "underline-offset-4 underline"
+      "hover" -> "link-hover"
+      "none" -> "no-underline"
+      _ -> ""
+    end
+    
+    [base, variant_class, underline_class, custom_class]
+    |> Enum.filter(&(&1 != ""))
+    |> Enum.join(" ")
+  end
+
+  @doc """
+  Button link component
+  """
+  attr :href, :string, default: nil
+  attr :navigate, :string, default: nil
+  attr :variant, :string, default: "primary"
+  attr :size, :string, default: "md", values: ["xs", "sm", "md", "lg"]
+  attr :outline, :boolean, default: false
+  attr :class, :string, default: ""
+  slot :inner_block, required: true
+
+  def button_link(assigns) do
+    ~H"""
+    <%= if @href do %>
+      <a href={@href} class={button_link_class(@variant, @size, @outline, @class)}>
+        <%= render_slot(@inner_block) %>
+      </a>
+    <% else %>
+      <%= if @navigate do %>
+        <.link navigate={@navigate} class={button_link_class(@variant, @size, @outline, @class)}>
+          <%= render_slot(@inner_block) %>
+        </.link>
+      <% else %>
+        <span class={button_link_class(@variant, @size, @outline, @class)}>
+          <%= render_slot(@inner_block) %>
+        </span>
+      <% end %>
+    <% end %>
+    """
+  end
+
+  defp button_link_class(variant, size, outline, custom_class) do
+    base = "btn"
+    variant_class = if outline, do: "btn-outline btn-#{variant}", else: "btn-#{variant}"
+    size_class = "btn-#{size}"
+    
+    [base, variant_class, size_class, custom_class]
+    |> Enum.filter(&(&1 != ""))
+    |> Enum.join(" ")
+  end
 end

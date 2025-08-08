@@ -43,6 +43,18 @@ defmodule SuperdupernovaWeb.Router do
       live "/action-test", ActionTestLive
       live "/display-test", DisplayTestLive
       live "/tabs-test", TabsTestLive
+      live "/avatar-test", AvatarTestLive
+      live "/calendar-test", CalendarTestLive
+      live "/kbd-test", KbdTestLive
+      live "/phase5-test", Phase5TestLive
+      live "/phase6-test", Phase6TestLive
+      live "/navigation-test", NavigationTestLive
+      live "/timeline-test", TimelineTestLive
+      live "/carousel-test", CarouselTestLive
+      live "/chat-test", ChatTestLive
+      live "/rating-test", RatingTestLive
+      live "/breadcrumbs-test", BreadcrumbsTestLive
+      live "/link-test", LinkTestLive
     end
   end
 
