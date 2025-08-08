@@ -136,6 +136,40 @@ defmodule SuperdupernovaWeb.DisplayTestLive do
           <.stat title="Tasks Done" value="86%" />
         </.lego_grid>
         
+        <h2 class="text-xl font-semibold mb-unit-2 mt-unit-4">Steps Widget</h2>
+        <.lego_grid>
+          <.steps 
+            steps={["Register", "Choose plan", "Payment", "Receive Product"]} 
+            current_step={2} 
+          />
+        </.lego_grid>
+        
+        <h2 class="text-xl font-semibold mb-unit-2 mt-unit-4">Loading & Skeleton Widgets</h2>
+        <.lego_grid>
+          <div class="widget-12x1 space-x-4">
+            <span>Loading Spinners:</span>
+            <.loading size="xs" />
+            <.loading size="sm" />
+            <.loading size="md" />
+            <.loading size="lg" />
+          </div>
+          
+          <div class="widget-6x1">
+            <p class="mb-2">Text Skeleton:</p>
+            <.skeleton type="text" lines={4} />
+          </div>
+          
+          <div class="widget-6x1">
+            <p class="mb-2">Card Skeleton:</p>
+            <.skeleton type="card" />
+          </div>
+          
+          <div class="widget-12x1">
+            <p class="mb-2">Image Skeleton:</p>
+            <.skeleton type="image" />
+          </div>
+        </.lego_grid>
+        
         <h2 class="text-xl font-semibold mb-unit-2 mt-unit-4">Layout Enhancement Widgets</h2>
         
         <.divider label="Divider with Label" />

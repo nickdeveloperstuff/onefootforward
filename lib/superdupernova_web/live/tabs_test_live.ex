@@ -31,6 +31,19 @@ defmodule SuperdupernovaWeb.TabsTestLive do
             </.tab_panel>
           </.tabs>
         </.lego_grid>
+        
+        <.divider label="Accordion Widget" />
+        
+        <.lego_grid>
+          <.accordion items={[
+            {"faq1", "What is Phoenix LiveView?", 
+             "Phoenix LiveView enables rich, real-time user experiences with server-rendered HTML. It provides a programming model for interactive applications without writing JavaScript."},
+            {"faq2", "How does the Lego Widget System work?", 
+             "The Lego Widget System provides pre-built, composable UI components that follow a consistent 12-column grid system with standardized sizes. Each widget is designed to be a reusable building block."},
+            {"faq3", "What is Ash Framework?", 
+             "Ash is a declarative, resource-oriented application development framework for Elixir. It provides a powerful DSL for defining resources, actions, and policies while maintaining flexibility and extensibility."}
+          ]} multiple={false} />
+        </.lego_grid>
       </.lego_container>
     </div>
     """
