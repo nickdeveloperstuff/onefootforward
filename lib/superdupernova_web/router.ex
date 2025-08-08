@@ -43,8 +43,6 @@ defmodule SuperdupernovaWeb.Router do
       live "/action-test", ActionTestLive
       live "/display-test", DisplayTestLive
       live "/tabs-test", TabsTestLive
-      live "/ash-form-test", AshFormTestLive
-      live "/ash-simple-test", AshFormSimpleTestLive
     end
   end
 
