@@ -37,6 +37,7 @@ defmodule SuperdupernovaWeb.Router do
       # If an authenticated user must *not* be present:
       # on_mount {SuperdupernovaWeb.LiveUserAuth, :live_no_user}
       
+      live "/widgets", WidgetsIndexLive
       live "/test-layout", TestLayoutLive
       live "/layout-test", LayoutTestLive
       live "/form-test", FormTestLive
