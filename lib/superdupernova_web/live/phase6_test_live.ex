@@ -1,9 +1,6 @@
 defmodule SuperdupernovaWeb.Phase6TestLive do
   use SuperdupernovaWeb, :live_view
   use SuperdupernovaWeb.Widgets
-  
-  # Avoid import conflict by aliasing
-  import SuperdupernovaWeb.CoreComponents, except: [list: 1]
 
   @impl true
   def render(assigns) do
@@ -94,19 +91,19 @@ defmodule SuperdupernovaWeb.Phase6TestLive do
               <!-- Unordered list -->
               <div>
                 <h3 class="text-lg font-medium mb-3">Unordered List</h3>
-                <.list items={["First item", "Second item", "Third item", "Fourth item"]} type="unordered" />
+                <SuperdupernovaWeb.Widgets.Display.list items={["First item", "Second item", "Third item", "Fourth item"]} type="unordered" />
               </div>
               
               <!-- Ordered list -->
               <div>
                 <h3 class="text-lg font-medium mb-3">Ordered List</h3>
-                <.list items={["Step one", "Step two", "Step three", "Step four"]} type="ordered" />
+                <SuperdupernovaWeb.Widgets.Display.list items={["Step one", "Step two", "Step three", "Step four"]} type="ordered" />
               </div>
               
               <!-- Menu list -->
               <div>
                 <h3 class="text-lg font-medium mb-3">Menu List</h3>
-                <.list 
+                <SuperdupernovaWeb.Widgets.Display.list 
                   items={["Dashboard", "Profile", "Settings", "Logout"]} 
                   type="menu" 
                   hover={true}
@@ -116,7 +113,7 @@ defmodule SuperdupernovaWeb.Phase6TestLive do
               <!-- Steps list -->
               <div>
                 <h3 class="text-lg font-medium mb-3">Steps List</h3>
-                <.list 
+                <SuperdupernovaWeb.Widgets.Display.list 
                   items={[
                     %{label: "Register", completed: true},
                     %{label: "Choose plan", completed: true},
@@ -131,17 +128,17 @@ defmodule SuperdupernovaWeb.Phase6TestLive do
               <div>
                 <h3 class="text-lg font-medium mb-3">Different Sizes</h3>
                 <div class="space-y-4">
-                  <.list items={["Extra small text"]} size="xs" />
-                  <.list items={["Small text"]} size="sm" />
-                  <.list items={["Medium text"]} size="md" />
-                  <.list items={["Large text"]} size="lg" />
+                  <SuperdupernovaWeb.Widgets.Display.list items={["Extra small text"]} size="xs" />
+                  <SuperdupernovaWeb.Widgets.Display.list items={["Small text"]} size="sm" />
+                  <SuperdupernovaWeb.Widgets.Display.list items={["Medium text"]} size="md" />
+                  <SuperdupernovaWeb.Widgets.Display.list items={["Large text"]} size="lg" />
                 </div>
               </div>
               
               <!-- Dense list -->
               <div>
                 <h3 class="text-lg font-medium mb-3">Dense List</h3>
-                <.list 
+                <SuperdupernovaWeb.Widgets.Display.list 
                   items={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"]} 
                   dense={true}
                 />

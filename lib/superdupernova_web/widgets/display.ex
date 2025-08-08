@@ -580,7 +580,7 @@ defmodule SuperdupernovaWeb.Widgets.Display do
   attr :show_controls, :boolean, default: true
   attr :width, :string, default: "full", values: ["full", "half", "auto"]
   attr :aspect_ratio, :string, default: "16:9", values: ["16:9", "4:3", "1:1", "21:9"]
-  slot :slides, required: false
+  slot :slides
 
   def carousel(assigns) do
     ~H"""
@@ -1638,7 +1638,7 @@ defmodule SuperdupernovaWeb.Widgets.Display do
     |> Enum.join(" ")
   end
 
-  defp rating_input_class(size, color, half) do
+  defp rating_input_class(_size, color, half) do
     base = "mask mask-star-2"
     color_class = "bg-#{color}"
     half_class = if half, do: "mask-half-1", else: ""

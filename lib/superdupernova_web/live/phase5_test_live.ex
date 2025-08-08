@@ -1,9 +1,6 @@
 defmodule SuperdupernovaWeb.Phase5TestLive do
   use SuperdupernovaWeb, :live_view
   use SuperdupernovaWeb.Widgets
-  
-  # Avoid import conflict by aliasing
-  import SuperdupernovaWeb.CoreComponents, except: [list: 1]
 
   @impl true
   def render(assigns) do
