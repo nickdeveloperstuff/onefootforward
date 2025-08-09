@@ -66,6 +66,7 @@ defmodule SuperdupernovaWeb.Router do
     live "/test/example-route", ExampleRouteLive
     live "/test/first-timer", FirstTimerLive
     live "/test/example-layout", ExampleLayoutLive
+    live "/test/supertrial", SuperTrialLive
     auth_routes AuthController, Superdupernova.Accounts.User, path: "/auth"
     sign_out_route AuthController
 
