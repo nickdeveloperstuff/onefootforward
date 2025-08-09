@@ -17,7 +17,7 @@ defmodule SuperdupernovaWeb.WidgetsIndexLive do
           </div>
           
           <!-- Design Tokens Card -->
-          <.card title="Design System Tokens" size="6x4">
+          <.card title="Design System Tokens" size="12x6">
             <div class="space-y-3" id="design-tokens" phx-hook="DesignTokens">
               <div>
                 <p class="font-semibold text-sm mb-2">Theme: Light (default) & Dark</p>
@@ -61,17 +61,105 @@ defmodule SuperdupernovaWeb.WidgetsIndexLive do
               </div>
               
               <!-- Typography System -->
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <p class="font-semibold text-sm mb-1">Typography</p>
-                  <p class="text-xs truncate">Font: <span class="font-mono text-xs" data-token="--font-family-base">system-ui</span></p>
-                  <p class="text-xs">Bold: <span class="font-mono" data-token="--font-weight-bold">700</span></p>
+              <div>
+                <p class="font-semibold text-sm mb-2">Typography System</p>
+                
+                <!-- Font Families -->
+                <div class="mb-2">
+                  <p class="text-xs text-gray-600 mb-1">Font Families:</p>
+                  <div class="space-y-1">
+                    <div style="font-family: var(--font-family-base);">
+                      <span class="text-xs">Base: </span>
+                      <span class="font-medium" data-token="--font-family-base">system-ui</span>
+                      <span class="text-sm ml-2">The quick brown fox</span>
+                    </div>
+                    <div style="font-family: var(--font-family-mono);">
+                      <span class="text-xs">Mono: </span>
+                      <span class="font-medium" data-token="--font-family-mono">monospace</span>
+                      <span class="text-sm ml-2">Code_Example_123</span>
+                    </div>
+                  </div>
                 </div>
+                
+                <!-- Text Sizes with Examples -->
+                <div class="mb-2">
+                  <p class="text-xs text-gray-600 mb-1">Text Sizes:</p>
+                  <div class="space-y-1">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xs w-16">xs:</span>
+                      <span class="font-mono text-xs" data-token="--text-xs">0.75rem</span>
+                      <span style="font-size: var(--text-xs);">Sample Text</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xs w-16">sm:</span>
+                      <span class="font-mono text-xs" data-token="--text-sm">0.875rem</span>
+                      <span style="font-size: var(--text-sm);">Sample Text</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xs w-16">base:</span>
+                      <span class="font-mono text-xs" data-token="--text-base">1rem</span>
+                      <span style="font-size: var(--text-base);">Sample Text</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xs w-16">lg:</span>
+                      <span class="font-mono text-xs" data-token="--text-lg">1.125rem</span>
+                      <span style="font-size: var(--text-lg);">Sample Text</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xs w-16">xl:</span>
+                      <span class="font-mono text-xs" data-token="--text-xl">1.25rem</span>
+                      <span style="font-size: var(--text-xl);">Sample</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xs w-16">2xl:</span>
+                      <span class="font-mono text-xs" data-token="--text-2xl">1.5rem</span>
+                      <span style="font-size: var(--text-2xl);">Sample</span>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xs w-16">3xl:</span>
+                      <span class="font-mono text-xs" data-token="--text-3xl">1.875rem</span>
+                      <span style="font-size: var(--text-3xl);">Big</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Font Weights -->
+                <div class="mb-2">
+                  <p class="text-xs text-gray-600 mb-1">Font Weights:</p>
+                  <div class="grid grid-cols-2 gap-1 text-sm">
+                    <div>
+                      <span style="font-weight: var(--font-weight-normal);">Normal</span>
+                      <span class="font-mono text-xs ml-1" data-token="--font-weight-normal">400</span>
+                    </div>
+                    <div>
+                      <span style="font-weight: var(--font-weight-medium);">Medium</span>
+                      <span class="font-mono text-xs ml-1" data-token="--font-weight-medium">500</span>
+                    </div>
+                    <div>
+                      <span style="font-weight: var(--font-weight-semibold);">Semibold</span>
+                      <span class="font-mono text-xs ml-1" data-token="--font-weight-semibold">600</span>
+                    </div>
+                    <div>
+                      <span style="font-weight: var(--font-weight-bold);">Bold</span>
+                      <span class="font-mono text-xs ml-1" data-token="--font-weight-bold">700</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Line Heights -->
                 <div>
-                  <p class="font-semibold text-sm mb-1">Text Sizes</p>
-                  <p class="text-xs">sm: <span class="font-mono" data-token="--text-sm">0.875rem</span></p>
-                  <p class="text-xs">base: <span class="font-mono" data-token="--text-base">1rem</span></p>
-                  <p class="text-xs">xl: <span class="font-mono" data-token="--text-xl">1.25rem</span></p>
+                  <p class="text-xs text-gray-600 mb-1">Line Heights:</p>
+                  <div class="space-y-2 text-xs">
+                    <div class="border-l-2 border-gray-300 pl-2" style="line-height: var(--line-height-tight);">
+                      <span class="font-mono" data-token="--line-height-tight">1.25</span> - Tight: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="border-l-2 border-gray-300 pl-2" style="line-height: var(--line-height-normal);">
+                      <span class="font-mono" data-token="--line-height-normal">1.5</span> - Normal: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    <div class="border-l-2 border-gray-300 pl-2" style="line-height: var(--line-height-relaxed);">
+                      <span class="font-mono" data-token="--line-height-relaxed">1.75</span> - Relaxed: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                  </div>
                 </div>
               </div>
               
