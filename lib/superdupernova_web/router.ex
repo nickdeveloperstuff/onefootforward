@@ -63,6 +63,7 @@ defmodule SuperdupernovaWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/test/example-route", ExampleRouteLive
     auth_routes AuthController, Superdupernova.Accounts.User, path: "/auth"
     sign_out_route AuthController
 
