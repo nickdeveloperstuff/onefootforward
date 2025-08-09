@@ -272,12 +272,12 @@ defmodule SuperdupernovaWeb.Widgets.Display do
     """
   end
 
-  defp grid_size_class("3x2"), do: "widget-4x1"
-  defp grid_size_class("4x4"), do: "widget-4x1"
-  defp grid_size_class("6x4"), do: "widget-6x1"
-  defp grid_size_class("12x4"), do: "widget-12x1"
-  defp grid_size_class("12x6"), do: "widget-12x1"
-  defp grid_size_class(_), do: "widget-6x1"
+  defp grid_size_class("3x2"), do: "widget-3x2"
+  defp grid_size_class("4x4"), do: "widget-4x4"
+  defp grid_size_class("6x4"), do: "widget-6x4"
+  defp grid_size_class("12x4"), do: "widget-12x4"
+  defp grid_size_class("12x6"), do: "widget-12x6"
+  defp grid_size_class(_), do: "widget-6x4"
 
   @doc """
   Avatar widget for user profile images with status indicators

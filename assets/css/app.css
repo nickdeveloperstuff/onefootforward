@@ -105,11 +105,41 @@
 
 /* This file is for your main application CSS */
 
-/* Lego Grid System */
+/* ========================================
+   DESIGN TOKEN SYSTEM
+   All widgets must inherit from these tokens
+   ======================================== */
+
+/* Core Design Tokens */
 :root {
-  --lego-unit: 0.25rem;
+  /* Spacing Units (4pt atomic system) */
+  --lego-unit: 0.25rem;      /* 4px - Base unit */
+  --lego-unit-2: 0.5rem;      /* 8px */
+  --lego-unit-3: 0.75rem;     /* 12px */
+  --lego-unit-4: 1rem;        /* 16px - Standard gutter */
+  --lego-unit-6: 1.5rem;      /* 24px */
+  --lego-unit-8: 2rem;        /* 32px */
+  --lego-unit-12: 3rem;       /* 48px */
+  --lego-unit-16: 4rem;       /* 64px */
+  
+  /* Grid System */
   --lego-gutter: 1rem;
   --lego-columns: 12;
+  
+  /* Neobrutalist Design */
+  --border-width: 2px;
+  --border-color: black;
+  --shadow-offset: 0.25rem;
+  --transition-duration: 150ms;
+  
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
 }
 
 .lego-container {
@@ -132,78 +162,168 @@
 .widget-3x1 { @apply col-span-3; }
 .widget-3x2 { @apply col-span-3 row-span-2; }
 .widget-4x1 { @apply col-span-4; }
+.widget-4x4 { @apply col-span-4 row-span-4; }
 .widget-6x1 { @apply col-span-6; }
+.widget-6x2 { @apply col-span-6 row-span-2; }
+.widget-6x4 { @apply col-span-6 row-span-4; }
 .widget-8x1 { @apply col-span-8; }
 .widget-12x1 { @apply col-span-12; }
-.widget-6x2 { @apply col-span-6 row-span-2; }
 .widget-12x2 { @apply col-span-12 row-span-2; }
 .widget-12x4 { @apply col-span-12 row-span-4; }
+.widget-12x6 { @apply col-span-12 row-span-6; }
 
-/* Neobrutalist card styling */
+/* ========================================
+   WIDGET STYLING USING DESIGN TOKENS
+   All widgets inherit from the design system
+   ======================================== */
+
+/* Card Components */
 .card {
-  @apply border-2 border-black shadow-none;
+  border: var(--border-width) solid var(--border-color);
+  @apply shadow-none rounded-lg;
+  transition: transform var(--transition-duration);
 }
 
-/* Neobrutalist button styling */
+.card:hover {
+  transform: translate(1px, 1px);
+}
+
+/* Button Components */
 .btn {
-  @apply font-semibold border-2 border-black shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-transform;
+  border: var(--border-width) solid var(--border-color);
+  @apply font-semibold shadow-none;
+  transition: transform var(--transition-duration);
 }
 
-/* Badge neobrutalist styling */
+.btn:hover:not(:disabled) {
+  transform: translate(var(--shadow-offset), var(--shadow-offset));
+}
+
+/* Badge Components */
 .badge {
-  @apply border-2 border-black font-semibold;
+  border: var(--border-width) solid var(--border-color);
+  @apply font-semibold;
+  padding: var(--lego-unit) var(--lego-unit-2);
 }
 
-/* Alert neobrutalist styling */
+/* Alert Components */
 .alert {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--lego-unit-4);
+  margin-bottom: var(--lego-unit-4);
 }
 
-/* Stat card styling */
+/* Stat Components */
 .stat {
-  @apply border-2 border-black rounded-lg;
+  border: var(--border-width) solid var(--border-color);
+  @apply rounded-lg;
+  padding: var(--lego-unit-4);
 }
 
-/* Input field borders */
+/* Form Input Components */
 .input, .textarea, .select {
-  @apply border-2 border-black focus:border-black;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--lego-unit-2) var(--lego-unit-3);
+  transition: all var(--transition-duration);
 }
 
-/* Table borders */
+.input:focus, .textarea:focus, .select:focus {
+  border-color: var(--border-color);
+  outline: 2px solid var(--border-color);
+  outline-offset: 2px;
+}
+
+/* Table Components */
 .table {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
 }
 
 .table th, .table td {
-  @apply border border-black;
+  border: 1px solid var(--border-color);
+  padding: var(--lego-unit-3);
 }
 
-/* Modal borders */
+/* Modal Components */
 .modal-box {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--lego-unit-6);
 }
 
-/* Dropdown borders */
+/* Dropdown Components */
 .dropdown-content {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--lego-unit-2);
 }
 
-/* Tabs borders */
+/* Tab Components */
 .tabs-boxed {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--lego-unit-2);
 }
 
-/* Progress bar borders */
+/* Progress Components */
 .progress {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
+  height: var(--lego-unit-6);
 }
 
-/* Checkbox and radio borders */
+/* Checkbox & Radio Components */
 .checkbox, .radio {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
+  width: var(--lego-unit-6);
+  height: var(--lego-unit-6);
 }
 
-/* Toggle borders */
+/* Toggle Components */
 .toggle {
-  @apply border-2 border-black;
+  border: var(--border-width) solid var(--border-color);
+  height: var(--lego-unit-6);
+  width: calc(var(--lego-unit-6) * 2);
+}
+
+/* Loading Spinner */
+.loading {
+  border-width: var(--border-width);
+}
+
+/* Drawer */
+.drawer-side {
+  border-right: var(--border-width) solid var(--border-color);
+}
+
+/* Navbar */
+.navbar {
+  border-bottom: var(--border-width) solid var(--border-color);
+  padding: var(--lego-unit-3) var(--lego-unit-4);
+}
+
+/* Divider */
+.divider {
+  border-color: var(--border-color);
+}
+
+/* Steps */
+.step {
+  border: var(--border-width) solid var(--border-color);
+}
+
+/* Tooltip */
+.tooltip {
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--lego-unit-2);
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  padding: var(--lego-unit-2) 0;
+}
+
+/* Link styling */
+.link {
+  border-bottom: var(--border-width) solid transparent;
+  transition: border-color var(--transition-duration);
+}
+
+.link:hover {
+  border-bottom-color: var(--border-color);
 }
