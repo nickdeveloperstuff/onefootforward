@@ -25,11 +25,37 @@ import {LiveSocket} from "phoenix_live_view"
 import {hooks as colocatedHooks} from "phoenix-colocated/superdupernova"
 import topbar from "../vendor/topbar"
 
+// Custom hooks for reading CSS variables
+const DesignTokens = {
+  mounted() {
+    this.updateTokenValues()
+    // Update when theme changes
+    const observer = new MutationObserver(() => this.updateTokenValues())
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['data-theme'] 
+    })
+  },
+  
+  updateTokenValues() {
+    const computedStyle = getComputedStyle(document.documentElement)
+    
+    // Find all elements with data-token attribute
+    this.el.querySelectorAll('[data-token]').forEach(element => {
+      const token = element.getAttribute('data-token')
+      const value = computedStyle.getPropertyValue(token).trim()
+      if (value) {
+        element.textContent = value
+      }
+    })
+  }
+}
+
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken},
-  hooks: {...colocatedHooks},
+  hooks: {...colocatedHooks, DesignTokens},
 })
 
 // Show progress bar on live navigation and form submits

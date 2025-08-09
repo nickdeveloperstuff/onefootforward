@@ -18,7 +18,7 @@ defmodule SuperdupernovaWeb.WidgetsIndexLive do
           
           <!-- Design Tokens Card -->
           <.card title="Design System Tokens" size="6x4">
-            <div class="space-y-3">
+            <div class="space-y-3" id="design-tokens" phx-hook="DesignTokens">
               <div>
                 <p class="font-semibold text-sm mb-2">Theme: Light (default) & Dark</p>
                 <div class="flex flex-wrap gap-2">
@@ -32,39 +32,58 @@ defmodule SuperdupernovaWeb.WidgetsIndexLive do
                   <.badge variant="neutral">Neutral</.badge>
                 </div>
               </div>
+              
+              <!-- Spacing System -->
+              <div>
+                <p class="font-semibold text-sm mb-1">Spacing Units (4pt System)</p>
+                <div class="grid grid-cols-4 gap-1 text-xs">
+                  <div>unit: <span class="font-mono" data-token="--lego-unit">0.25rem</span></div>
+                  <div>unit-2: <span class="font-mono" data-token="--lego-unit-2">0.5rem</span></div>
+                  <div>unit-4: <span class="font-mono" data-token="--lego-unit-4">1rem</span></div>
+                  <div>unit-8: <span class="font-mono" data-token="--lego-unit-8">2rem</span></div>
+                </div>
+              </div>
+              
+              <!-- Border & Shadow System -->
               <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="font-semibold text-sm mb-1">Borders</p>
+                  <p class="text-xs">Width: <span class="font-mono" data-token="--border-width">2px</span></p>
+                  <p class="text-xs">Color: <span class="font-mono" data-token="--border-color">black</span></p>
+                  <p class="text-xs">Shadow: <span class="font-mono" data-token="--shadow-offset">0.25rem</span></p>
+                </div>
                 <div>
                   <p class="font-semibold text-sm mb-1">Border Radius</p>
-                  <p class="text-xs">Selector: 0.25rem (4px)</p>
-                  <p class="text-xs">Field: 0.25rem (4px)</p>
-                  <p class="text-xs">Box: 0.5rem (8px)</p>
-                </div>
-                <div>
-                  <p class="font-semibold text-sm mb-1">Borders & Depth</p>
-                  <p class="text-xs">Border Width: 1.5px</p>
-                  <p class="text-xs">Depth: 1</p>
-                  <p class="text-xs">Noise: 0</p>
+                  <p class="text-xs">sm: <span class="font-mono" data-token="--radius-sm">0.125rem</span></p>
+                  <p class="text-xs">md: <span class="font-mono" data-token="--radius-md">0.375rem</span></p>
+                  <p class="text-xs">lg: <span class="font-mono" data-token="--radius-lg">0.5rem</span></p>
                 </div>
               </div>
+              
+              <!-- Typography System -->
               <div class="grid grid-cols-2 gap-4">
                 <div>
-                  <p class="font-semibold text-sm mb-1">Grid System</p>
-                  <p class="text-xs">Columns: 12</p>
-                  <p class="text-xs">Gutter: 1rem (16px)</p>
-                  <p class="text-xs">Unit: 0.25rem (4px)</p>
+                  <p class="font-semibold text-sm mb-1">Typography</p>
+                  <p class="text-xs truncate">Font: <span class="font-mono text-xs" data-token="--font-family-base">system-ui</span></p>
+                  <p class="text-xs">Bold: <span class="font-mono" data-token="--font-weight-bold">700</span></p>
                 </div>
                 <div>
-                  <p class="font-semibold text-sm mb-1">Container</p>
-                  <p class="text-xs">Padding X: 0.5rem (px-2)</p>
-                  <p class="text-xs">Padding Y: 0.5rem (py-2)</p>
-                  <p class="text-xs">Width: 100% (full)</p>
+                  <p class="font-semibold text-sm mb-1">Text Sizes</p>
+                  <p class="text-xs">sm: <span class="font-mono" data-token="--text-sm">0.875rem</span></p>
+                  <p class="text-xs">base: <span class="font-mono" data-token="--text-base">1rem</span></p>
+                  <p class="text-xs">xl: <span class="font-mono" data-token="--text-xl">1.25rem</span></p>
                 </div>
               </div>
+              
+              <!-- Shadow Examples -->
               <div>
-                <p class="font-semibold text-sm mb-1">Typography</p>
-                <p class="text-xs">Font Family: System default</p>
-                <p class="text-xs">Line Height: Default</p>
-                <p class="text-xs">Letter Spacing: Default</p>
+                <p class="font-semibold text-sm mb-2">Shadow Elevation</p>
+                <div class="flex gap-2">
+                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-sm);" title="sm"></div>
+                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-md);" title="md"></div>
+                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-lg);" title="lg"></div>
+                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-neo);" title="neo"></div>
+                </div>
               </div>
             </div>
           </.card>
