@@ -8,35 +8,147 @@ defmodule SuperdupernovaWeb.WidgetsIndexLive do
     <div class="lego-page">
       <.lego_container>
         <.lego_grid>
-          <!-- Header Section - Full Width -->
+          <!-- Header Section - Cleaner and More Concise -->
           <div class="widget-12x1">
-            <h1 class="text-3xl font-bold mb-2">Superdupernova Widget Showcase</h1>
-            <p class="text-lg text-base-content/70">
-              Comprehensive design system with 70+ widgets built on Phoenix LiveView, DaisyUI, and the Lego-brick UI system
+            <h1 class="text-4xl font-bold mb-1">Superdupernova Widget Library</h1>
+            <p class="text-base text-base-content/70">
+              70+ Phoenix LiveView widgets • DaisyUI powered • Lego-brick UI system
             </p>
           </div>
           
-          <!-- Design Tokens Card -->
-          <.card title="Design System Tokens" size="12x6">
-            <div class="space-y-3" id="design-tokens" phx-hook="DesignTokens">
-              <div>
-                <p class="font-semibold text-sm mb-2">Theme: Light (default) & Dark</p>
-                <div class="flex flex-wrap gap-2">
-                  <.badge variant="primary">Primary</.badge>
-                  <.badge variant="secondary">Secondary</.badge>
-                  <.badge variant="accent">Accent</.badge>
-                  <.badge variant="info">Info</.badge>
-                  <.badge variant="success">Success</.badge>
-                  <.badge variant="warning">Warning</.badge>
-                  <.badge variant="error">Error</.badge>
-                  <.badge variant="neutral">Neutral</.badge>
-                </div>
+          <!-- Quick Stats Bar -->
+          <div class="widget-12x1">
+            <div class="flex gap-4 p-4 bg-base-200 rounded-lg">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold">70+</span>
+                <span class="text-sm">Widgets</span>
+              </div>
+              <div class="divider divider-horizontal"></div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold">4</span>
+                <span class="text-sm">Categories</span>
+              </div>
+              <div class="divider divider-horizontal"></div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold">17</span>
+                <span class="text-sm">Test Pages</span>
+              </div>
+              <div class="divider divider-horizontal"></div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold">10+</span>
+                <span class="text-sm">Grid Sizes</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Widget Categories Grid - More Prominent -->
+          <.card title="Widget Categories" size="12x4">
+            <div class="grid grid-cols-4 gap-4">
+              <div class="text-center p-4 bg-base-100 rounded-lg border-2 border-neutral">
+                <h3 class="font-bold text-lg mb-2">Layout</h3>
+                <.badge variant="neutral" size="lg">7 widgets</.badge>
+                <p class="text-xs mt-2 mb-3">Container, Grid, Drawer, Spacer</p>
+                <.link navigate="/layout-test" class="btn btn-sm btn-neutral w-full">
+                  View Demo →
+                </.link>
               </div>
               
-              <!-- Spacing System -->
+              <div class="text-center p-4 bg-base-100 rounded-lg border-2 border-info">
+                <h3 class="font-bold text-lg mb-2">Display</h3>
+                <.badge variant="info" size="lg">31 widgets</.badge>
+                <p class="text-xs mt-2 mb-3">Card, Alert, Badge, Table, Progress</p>
+                <.link navigate="/display-test" class="btn btn-sm btn-info w-full">
+                  View Demo →
+                </.link>
+              </div>
+              
+              <div class="text-center p-4 bg-base-100 rounded-lg border-2 border-success">
+                <h3 class="font-bold text-lg mb-2">Action</h3>
+                <.badge variant="success" size="lg">8 widgets</.badge>
+                <p class="text-xs mt-2 mb-3">Button, Modal, Dropdown, Theme</p>
+                <.link navigate="/action-test" class="btn btn-sm btn-success w-full">
+                  View Demo →
+                </.link>
+              </div>
+              
+              <div class="text-center p-4 bg-base-100 rounded-lg border-2 border-warning">
+                <h3 class="font-bold text-lg mb-2">Form</h3>
+                <.badge variant="warning" size="lg">18 widgets</.badge>
+                <p class="text-xs mt-2 mb-3">Input, Select, Checkbox, Toggle</p>
+                <.link navigate="/form-test" class="btn btn-sm btn-warning w-full">
+                  View Demo →
+                </.link>
+              </div>
+            </div>
+          </.card>
+          
+          <!-- Quick Navigation to Test Pages -->
+          <.card title="Test Page Navigator" size="6x4">
+            <div class="grid grid-cols-2 gap-2">
+              <.link navigate="/tabs-test" class="btn btn-sm btn-ghost">Tabs Test</.link>
+              <.link navigate="/avatar-test" class="btn btn-sm btn-ghost">Avatar Test</.link>
+              <.link navigate="/timeline-test" class="btn btn-sm btn-ghost">Timeline Test</.link>
+              <.link navigate="/carousel-test" class="btn btn-sm btn-ghost">Carousel Test</.link>
+              <.link navigate="/calendar-test" class="btn btn-sm btn-ghost">Calendar Test</.link>
+              <.link navigate="/kbd-test" class="btn btn-sm btn-ghost">Keyboard Test</.link>
+              <.link navigate="/chat-test" class="btn btn-sm btn-ghost">Chat Test</.link>
+              <.link navigate="/rating-test" class="btn btn-sm btn-ghost">Rating Test</.link>
+              <.link navigate="/breadcrumbs-test" class="btn btn-sm btn-ghost">Breadcrumbs</.link>
+              <.link navigate="/link-test" class="btn btn-sm btn-ghost">Link Test</.link>
+              <.link navigate="/navigation-test" class="btn btn-sm btn-ghost">Navigation</.link>
+              <.link navigate="/phase5-test" class="btn btn-sm btn-ghost">Phase 5</.link>
+              <.link navigate="/phase6-test" class="btn btn-sm btn-ghost">Phase 6</.link>
+            </div>
+          </.card>
+          
+          <!-- Theme Colors Preview -->
+          <.card title="Theme Colors" size="6x4">
+            <div class="space-y-3">
+              <div class="text-sm font-semibold mb-2">Available Themes: Light & Dark</div>
+              <div class="grid grid-cols-4 gap-2">
+                <div class="text-center">
+                  <div class="w-full h-12 bg-primary rounded mb-1"></div>
+                  <.badge variant="primary" size="sm">Primary</.badge>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-12 bg-secondary rounded mb-1"></div>
+                  <.badge variant="secondary" size="sm">Secondary</.badge>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-12 bg-accent rounded mb-1"></div>
+                  <.badge variant="accent" size="sm">Accent</.badge>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-12 bg-neutral rounded mb-1"></div>
+                  <.badge variant="neutral" size="sm">Neutral</.badge>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-12 bg-info rounded mb-1"></div>
+                  <.badge variant="info" size="sm">Info</.badge>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-12 bg-success rounded mb-1"></div>
+                  <.badge variant="success" size="sm">Success</.badge>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-12 bg-warning rounded mb-1"></div>
+                  <.badge variant="warning" size="sm">Warning</.badge>
+                </div>
+                <div class="text-center">
+                  <div class="w-full h-12 bg-error rounded mb-1"></div>
+                  <.badge variant="error" size="sm">Error</.badge>
+                </div>
+              </div>
+            </div>
+          </.card>
+          
+          <!-- Design System Overview - Compact -->
+          <.card title="Design System Quick Reference" size="12x4">
+            <div class="grid grid-cols-4 gap-4" id="design-tokens" phx-hook="DesignTokens">
+              <!-- Spacing -->
               <div>
-                <p class="font-semibold text-sm mb-1">Spacing Units (4pt System)</p>
-                <div class="grid grid-cols-4 gap-1 text-xs">
+                <p class="font-semibold text-sm mb-2">Spacing (4pt System)</p>
+                <div class="text-xs space-y-1">
                   <div>unit: <span class="font-mono" data-token="--lego-unit">0.25rem</span></div>
                   <div>unit-2: <span class="font-mono" data-token="--lego-unit-2">0.5rem</span></div>
                   <div>unit-4: <span class="font-mono" data-token="--lego-unit-4">1rem</span></div>
@@ -44,212 +156,147 @@ defmodule SuperdupernovaWeb.WidgetsIndexLive do
                 </div>
               </div>
               
-              <!-- Border & Shadow System -->
-              <div class="grid grid-cols-2 gap-4">
-                <div>
-                  <p class="font-semibold text-sm mb-1">Borders</p>
-                  <p class="text-xs">Width: <span class="font-mono" data-token="--border-width">2px</span></p>
-                  <p class="text-xs">Color: <span class="font-mono" data-token="--border-color">black</span></p>
-                  <p class="text-xs">Shadow: <span class="font-mono" data-token="--shadow-offset">0.25rem</span></p>
-                </div>
-                <div>
-                  <p class="font-semibold text-sm mb-1">Border Radius</p>
-                  <p class="text-xs">sm: <span class="font-mono" data-token="--radius-sm">0.125rem</span></p>
-                  <p class="text-xs">md: <span class="font-mono" data-token="--radius-md">0.375rem</span></p>
-                  <p class="text-xs">lg: <span class="font-mono" data-token="--radius-lg">0.5rem</span></p>
+              <!-- Border System -->
+              <div>
+                <p class="font-semibold text-sm mb-2">Borders & Radius</p>
+                <div class="text-xs space-y-1">
+                  <div>Width: <span class="font-mono" data-token="--border-width">2px</span></div>
+                  <div>Color: <span class="font-mono" data-token="--border-color">black</span></div>
+                  <div>Radius sm: <span class="font-mono" data-token="--radius-sm">0.125rem</span></div>
+                  <div>Radius lg: <span class="font-mono" data-token="--radius-lg">0.5rem</span></div>
                 </div>
               </div>
               
-              <!-- Typography System -->
+              <!-- Shadows -->
               <div>
-                <p class="font-semibold text-sm mb-2">Typography System</p>
-                
-                <!-- Font Families -->
-                <div class="mb-2">
-                  <p class="text-xs text-gray-600 mb-1">Font Families:</p>
-                  <div class="space-y-1">
-                    <div style="font-family: var(--font-family-base);">
-                      <span class="text-xs">Base: </span>
-                      <span class="font-medium" data-token="--font-family-base">system-ui</span>
-                      <span class="text-sm ml-2">The quick brown fox</span>
-                    </div>
-                    <div style="font-family: var(--font-family-mono);">
-                      <span class="text-xs">Mono: </span>
-                      <span class="font-medium" data-token="--font-family-mono">monospace</span>
-                      <span class="text-sm ml-2">Code_Example_123</span>
-                    </div>
-                  </div>
+                <p class="font-semibold text-sm mb-2">Shadow Elevation</p>
+                <div class="flex gap-2">
+                  <div class="w-8 h-8 bg-white border rounded" style="box-shadow: var(--shadow-sm);" title="sm"></div>
+                  <div class="w-8 h-8 bg-white border rounded" style="box-shadow: var(--shadow-md);" title="md"></div>
+                  <div class="w-8 h-8 bg-white border rounded" style="box-shadow: var(--shadow-lg);" title="lg"></div>
+                  <div class="w-8 h-8 bg-white border rounded" style="box-shadow: var(--shadow-neo);" title="neo"></div>
                 </div>
-                
-                <!-- Text Sizes with Examples -->
-                <div class="mb-2">
-                  <p class="text-xs text-gray-600 mb-1">Text Sizes:</p>
+              </div>
+              
+              <!-- Typography Basics -->
+              <div>
+                <p class="font-semibold text-sm mb-2">Typography</p>
+                <div class="text-xs space-y-1">
+                  <div>Base: <span class="font-mono" data-token="--font-family-base">system-ui</span></div>
+                  <div>Mono: <span class="font-mono" data-token="--font-family-mono">monospace</span></div>
+                  <div>Sizes: xs to 3xl</div>
+                  <div>Weights: 400, 500, 600, 700</div>
+                </div>
+              </div>
+            </div>
+          </.card>
+          
+          <!-- Typography Details - Collapsible -->
+          <details class="widget-12x1 collapse collapse-arrow bg-base-200">
+            <summary class="collapse-title text-lg font-medium">
+              Typography System Details
+            </summary>
+            <div class="collapse-content">
+              <div class="grid grid-cols-2 gap-4">
+                <!-- Text Sizes -->
+                <div>
+                  <p class="font-semibold text-sm mb-2">Text Sizes with Examples</p>
                   <div class="space-y-1">
                     <div class="flex items-baseline gap-2">
-                      <span class="text-xs w-16">xs:</span>
+                      <span class="text-xs w-12">xs:</span>
                       <span class="font-mono text-xs" data-token="--text-xs">0.75rem</span>
                       <span style="font-size: var(--text-xs);">Sample Text</span>
                     </div>
                     <div class="flex items-baseline gap-2">
-                      <span class="text-xs w-16">sm:</span>
+                      <span class="text-xs w-12">sm:</span>
                       <span class="font-mono text-xs" data-token="--text-sm">0.875rem</span>
                       <span style="font-size: var(--text-sm);">Sample Text</span>
                     </div>
                     <div class="flex items-baseline gap-2">
-                      <span class="text-xs w-16">base:</span>
+                      <span class="text-xs w-12">base:</span>
                       <span class="font-mono text-xs" data-token="--text-base">1rem</span>
                       <span style="font-size: var(--text-base);">Sample Text</span>
                     </div>
                     <div class="flex items-baseline gap-2">
-                      <span class="text-xs w-16">lg:</span>
+                      <span class="text-xs w-12">lg:</span>
                       <span class="font-mono text-xs" data-token="--text-lg">1.125rem</span>
                       <span style="font-size: var(--text-lg);">Sample Text</span>
                     </div>
                     <div class="flex items-baseline gap-2">
-                      <span class="text-xs w-16">xl:</span>
+                      <span class="text-xs w-12">xl:</span>
                       <span class="font-mono text-xs" data-token="--text-xl">1.25rem</span>
                       <span style="font-size: var(--text-xl);">Sample</span>
                     </div>
                     <div class="flex items-baseline gap-2">
-                      <span class="text-xs w-16">2xl:</span>
+                      <span class="text-xs w-12">2xl:</span>
                       <span class="font-mono text-xs" data-token="--text-2xl">1.5rem</span>
                       <span style="font-size: var(--text-2xl);">Sample</span>
                     </div>
                     <div class="flex items-baseline gap-2">
-                      <span class="text-xs w-16">3xl:</span>
+                      <span class="text-xs w-12">3xl:</span>
                       <span class="font-mono text-xs" data-token="--text-3xl">1.875rem</span>
                       <span style="font-size: var(--text-3xl);">Big</span>
                     </div>
                   </div>
                 </div>
                 
-                <!-- Font Weights -->
-                <div class="mb-2">
-                  <p class="text-xs text-gray-600 mb-1">Font Weights:</p>
-                  <div class="grid grid-cols-2 gap-1 text-sm">
-                    <div>
-                      <span style="font-weight: var(--font-weight-normal);">Normal</span>
-                      <span class="font-mono text-xs ml-1" data-token="--font-weight-normal">400</span>
-                    </div>
-                    <div>
-                      <span style="font-weight: var(--font-weight-medium);">Medium</span>
-                      <span class="font-mono text-xs ml-1" data-token="--font-weight-medium">500</span>
-                    </div>
-                    <div>
-                      <span style="font-weight: var(--font-weight-semibold);">Semibold</span>
-                      <span class="font-mono text-xs ml-1" data-token="--font-weight-semibold">600</span>
-                    </div>
-                    <div>
-                      <span style="font-weight: var(--font-weight-bold);">Bold</span>
-                      <span class="font-mono text-xs ml-1" data-token="--font-weight-bold">700</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- Line Heights -->
+                <!-- Font Weights and Line Heights -->
                 <div>
-                  <p class="text-xs text-gray-600 mb-1">Line Heights:</p>
-                  <div class="space-y-2 text-xs">
-                    <div class="border-l-2 border-gray-300 pl-2" style="line-height: var(--line-height-tight);">
-                      <span class="font-mono" data-token="--line-height-tight">1.25</span> - Tight: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  <p class="font-semibold text-sm mb-2">Weights & Line Heights</p>
+                  <div class="mb-3">
+                    <p class="text-xs text-gray-600 mb-1">Font Weights:</p>
+                    <div class="grid grid-cols-2 gap-1 text-sm">
+                      <div>
+                        <span style="font-weight: var(--font-weight-normal);">Normal</span>
+                        <span class="font-mono text-xs ml-1" data-token="--font-weight-normal">400</span>
+                      </div>
+                      <div>
+                        <span style="font-weight: var(--font-weight-medium);">Medium</span>
+                        <span class="font-mono text-xs ml-1" data-token="--font-weight-medium">500</span>
+                      </div>
+                      <div>
+                        <span style="font-weight: var(--font-weight-semibold);">Semibold</span>
+                        <span class="font-mono text-xs ml-1" data-token="--font-weight-semibold">600</span>
+                      </div>
+                      <div>
+                        <span style="font-weight: var(--font-weight-bold);">Bold</span>
+                        <span class="font-mono text-xs ml-1" data-token="--font-weight-bold">700</span>
+                      </div>
                     </div>
-                    <div class="border-l-2 border-gray-300 pl-2" style="line-height: var(--line-height-normal);">
-                      <span class="font-mono" data-token="--line-height-normal">1.5</span> - Normal: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                    <div class="border-l-2 border-gray-300 pl-2" style="line-height: var(--line-height-relaxed);">
-                      <span class="font-mono" data-token="--line-height-relaxed">1.75</span> - Relaxed: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </div>
+                  
+                  <div>
+                    <p class="text-xs text-gray-600 mb-1">Line Heights:</p>
+                    <div class="space-y-1 text-xs">
+                      <div style="line-height: var(--line-height-tight);">
+                        <span class="font-mono" data-token="--line-height-tight">1.25</span> - Tight
+                      </div>
+                      <div style="line-height: var(--line-height-normal);">
+                        <span class="font-mono" data-token="--line-height-normal">1.5</span> - Normal
+                      </div>
+                      <div style="line-height: var(--line-height-relaxed);">
+                        <span class="font-mono" data-token="--line-height-relaxed">1.75</span> - Relaxed
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              
-              <!-- Shadow Examples -->
-              <div>
-                <p class="font-semibold text-sm mb-2">Shadow Elevation</p>
-                <div class="flex gap-2">
-                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-sm);" title="sm"></div>
-                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-md);" title="md"></div>
-                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-lg);" title="lg"></div>
-                  <div class="w-12 h-12 bg-white border-2 border-black" style="box-shadow: var(--shadow-neo);" title="neo"></div>
-                </div>
-              </div>
             </div>
+          </details>
+          
+          <!-- All Widgets Directory - Full Width -->
+          <.card title="Complete Widget Directory" size="12x6">
+            <.widget_table 
+              data={@widgets}
+              columns={[
+                %{key: :name, label: "Widget Name"},
+                %{key: :category, label: "Category"},
+                %{key: :description, label: "Description"},
+                %{key: :phase, label: "Phase"},
+                %{key: :demo_page, label: "Demo Page"}
+              ]}
+            />
           </.card>
-          
-          <!-- Stats Card -->
-          <.card title="Widget Statistics" size="6x4">
-            <div class="grid grid-cols-2 gap-4">
-              <.stat title="Total Widgets" value="70+" desc="Components" />
-              <.stat title="Categories" value="4" desc="Major groups" />
-              <.stat title="Test Pages" value="17" desc="Live demos" />
-              <.stat title="Grid Sizes" value="10+" desc="Layout options" />
-            </div>
-          </.card>
-          
-          <!-- Category Cards - 4 cards at 3 columns each = 12 total -->
-          <div class="widget-3x2">
-            <.card title="Layout Widgets" size="12x4">
-              <div class="space-y-2">
-                <.badge variant="neutral">7 widgets</.badge>
-                <p class="text-sm">Container, Grid, Drawer, Spacer, Divider</p>
-                <.link navigate="/layout-test" class="btn btn-sm btn-primary w-full">
-                  View Layout Demo →
-                </.link>
-              </div>
-            </.card>
-          </div>
-          
-          <div class="widget-3x2">
-            <.card title="Display Widgets" size="12x4">
-              <div class="space-y-2">
-                <.badge variant="info">31 widgets</.badge>
-                <p class="text-sm">Card, Alert, Badge, Table, Progress, Avatar...</p>
-                <.link navigate="/display-test" class="btn btn-sm btn-primary w-full">
-                  View Display Demo →
-                </.link>
-              </div>
-            </.card>
-          </div>
-          
-          <div class="widget-3x2">
-            <.card title="Action Widgets" size="12x4">
-              <div class="space-y-2">
-                <.badge variant="success">8 widgets</.badge>
-                <p class="text-sm">Button, Modal, Dropdown, Theme Controller...</p>
-                <.link navigate="/action-test" class="btn btn-sm btn-primary w-full">
-                  View Action Demo →
-                </.link>
-              </div>
-            </.card>
-          </div>
-          
-          <div class="widget-3x2">
-            <.card title="Form Widgets" size="12x4">
-              <div class="space-y-2">
-                <.badge variant="warning">18 widgets</.badge>
-                <p class="text-sm">Input, Select, Checkbox, Toggle, Validator...</p>
-                <.link navigate="/form-test" class="btn btn-sm btn-primary w-full">
-                  View Form Demo →
-                </.link>
-              </div>
-            </.card>
-          </div>
-          
-          <!-- Comprehensive Widget Table -->
-          <div class="widget-12x4">
-            <.card title="All Widgets Directory" size="12x4">
-              <.widget_table 
-                data={@widgets}
-                columns={[
-                  %{key: :name, label: "Widget Name"},
-                  %{key: :category, label: "Category"},
-                  %{key: :description, label: "Description"},
-                  %{key: :phase, label: "Phase"},
-                  %{key: :demo_page, label: "Demo Page"}
-                ]}
-              />
-            </.card>
-          </div>
         </.lego_grid>
       </.lego_container>
     </div>
@@ -318,4 +365,6 @@ defmodule SuperdupernovaWeb.WidgetsIndexLive do
     
     {:ok, assign(socket, widgets: widgets)}
   end
+
+
 end
