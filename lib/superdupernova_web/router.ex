@@ -64,6 +64,7 @@ defmodule SuperdupernovaWeb.Router do
 
     get "/", PageController, :home
     live "/test/example-route", ExampleRouteLive
+    live "/test/first-timer", FirstTimerLive
     auth_routes AuthController, Superdupernova.Accounts.User, path: "/auth"
     sign_out_route AuthController
 

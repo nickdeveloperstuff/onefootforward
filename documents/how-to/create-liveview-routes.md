@@ -19,6 +19,13 @@ A public route is accessible to anyone without authentication.
 
 **File location**: `/lib/superdupernova_web/live/your_page_name_live.ex`
 
+**Naming Convention**:
+```
+File:   first_timer_live.ex    (snake_case with _live.ex suffix)
+Module: FirstTimerLive         (PascalCase, matches file name)
+Route:  /test/first-timer      (can be any path you want)
+```
+
 **Exact steps**:
 1. Navigate to the folder: `/lib/superdupernova_web/live/`
 2. Create a new file named with the pattern: `your_page_name_live.ex` (always end with `_live.ex`)
@@ -58,7 +65,7 @@ scope "/", SuperdupernovaWeb do
   pipe_through :browser
 ```
 
-**What to add**: Add your route AFTER line 65 (after `get "/", PageController, :home`) and BEFORE line 67 (before `auth_routes AuthController...`):
+**What to add**: Add your route AFTER the home route (`get "/", PageController, :home`) and BEFORE the auth_routes line. There may be other routes already there - just add yours to the list:
 
 ```elixir
 live "/your-route-path", YourPageNameLive
@@ -70,15 +77,24 @@ scope "/", SuperdupernovaWeb do
   pipe_through :browser
 
   get "/", PageController, :home
-  live "/test/example-route", ExampleRouteLive  # <-- YOUR NEW ROUTE HERE
+  # Other public LiveView routes may already be here:
+  live "/test/example-route", ExampleRouteLive
+  live "/test/first-timer", FirstTimerLive  # <-- YOUR NEW ROUTE HERE
   auth_routes AuthController, Superdupernova.Accounts.User, path: "/auth"
   # ... rest of the routes
 end
 ```
 
+**Note about module names**: In the router, you only need to use the short module name (e.g., `FirstTimerLive`) without the `SuperdupernovaWeb.` prefix, because it's already within the `SuperdupernovaWeb` scope.
+
 ### Step 3: Compile and Test
 
-Run these commands in your terminal:
+**First, make sure your Phoenix server is running**:
+```bash
+mix phx.server
+```
+
+**Then compile your changes** (in another terminal):
 ```bash
 mix compile
 ```
@@ -133,7 +149,7 @@ end
 
 **File to edit**: `/lib/superdupernova_web/router.ex`
 
-**Exact location in file**: Look for the `ash_authentication_live_session :authenticated_routes do` block (starts around line 28)
+**Exact location in file**: Look for the `ash_authentication_live_session :authenticated_routes do` block (typically near the beginning of the first scope block)
 
 **What to add**: Add your route inside this block, alongside the other `live` routes:
 
@@ -158,7 +174,12 @@ end
 
 ### Step 3: Compile and Test
 
-Run these commands:
+**First, make sure your Phoenix server is running**:
+```bash
+mix phx.server
+```
+
+**Then compile your changes** (in another terminal):
 ```bash
 mix compile
 ```
@@ -201,6 +222,8 @@ on_mount {SuperdupernovaWeb.LiveUserAuth, :live_no_user}
 ---
 
 ## Testing Your Routes
+
+**Prerequisites**: Make sure your Phoenix server is running with `mix phx.server`
 
 ### For PUBLIC routes:
 1. Open browser to `http://localhost:4000/your-route-path`
@@ -286,7 +309,7 @@ end
 
 **Router addition** (in the public scope):
 ```elixir
-live "/about", AboutLive
+live "/about", AboutLive  # Note: no need for SuperdupernovaWeb. prefix
 ```
 
 ### Example 2: Private Dashboard
@@ -322,7 +345,7 @@ end
 
 **Router addition** (inside `ash_authentication_live_session` block):
 ```elixir
-live "/dashboard", DashboardLive
+live "/dashboard", DashboardLive  # Note: no need for SuperdupernovaWeb. prefix
 ```
 
 ---
@@ -337,6 +360,7 @@ live "/dashboard", DashboardLive
 - [ ] Implement `render/1` function with `~H"""` template
 - [ ] Add route to router.ex in the public `scope "/", SuperdupernovaWeb` block
 - [ ] Use `live` not `get` for the route
+- [ ] Ensure Phoenix server is running (`mix phx.server`)
 - [ ] Run `mix compile`
 
 ### For PRIVATE LiveView Route:
